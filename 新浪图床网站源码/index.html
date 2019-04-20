@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>图床，www.yhv5.cn</title>
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="layui/css/layui.css" />
+		<link rel="icon" href="favicon.ico" />
+	</head>
+
+	<body class="layui-container">
+		<div class="layui-row">
+			<div class="layui-col-sm1 jsxs-title"> </div>
+			<div class="layui-col-sm4">
+				<fieldset class="layui-elem-field jsxs-title">
+
+					<legend>教书先生图床</legend>
+					<div class="layui-field-box">
+						欢迎使用教书先生图床					</div>
+				</fieldset>
+			</div>
+			<div class="layui-col-sm2 jsxs-title"> </div>
+			<div class="layui-col-sm4">
+				<fieldset class="layui-elem-field jsxs-title">
+
+					<legend>图床说明</legend>
+					<div class="layui-field-box">
+						本图床采用新浪接口CDN图床，稳定 高速 不限流量。
+					</div>
+				</fieldset>
+			</div>
+			<div class="layui-col-sm1 jsxs-title"> </div>
+		</div>
+
+		<div class="jsxs-sc">
+			<div class="layui-row">
+				<input type="file" accept="image/*" multiple="">
+				<button type="button" class="layui-btn">选择本地图片</button>
+				<button type="button" class="layui-btn layui-btn-normal" onClick="url_uploaddj()">上传远程图片</button>
+			</div>
+		</div>
+
+		<textarea id="url-res-txt" class="form-control" rows="5" placeholder="上传后的图片外链地址将显示在此处哦、下方会同时显示外链地址和预览图。"></textarea>
+		<div class="preview">
+		</div>
+		<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+		<script type="text/javascript" src="layui/layui.all.js"></script>
+		<script type="text/javascript" src="https://img.oioweb.cn/js/index.js?v=1.0"></script>
+	</body>
+<!-- 邵先森博客www.yhv5.cn-->
+</html>
