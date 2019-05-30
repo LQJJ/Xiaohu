@@ -48,6 +48,7 @@ fi
 
 # 删除之前创建的bulid文件夹
 rm -rf ${build_path}
+rm -rf ${exportIpaPath}/changelog
 
 
 echo '///-----------'
@@ -89,7 +90,7 @@ if [ -e $exportIpaPath/$scheme_name.ipa ]; then
 echo '///----------'
 echo '/// ipa包已导出'
 echo '///----------'
-open $exportIpaPath
+# open $exportIpaPath
 else
 echo '///-------------'
 echo '/// ipa包导出失败 '
@@ -113,14 +114,20 @@ altoolPath="/Applications/Xcode.app/Contents/Applications/Application Loader.app
 "$altoolPath" --upload-app -f ${exportIpaPath}/${scheme_name}.ipa -u  XXX -p XXX -t ios --output-format xml
 else
 
+# GIT_LOG=`git log -10 --pretty=format:"%s"`
+GIT_LOG=`git log -20 --date=format:'%Y-%m-%d %H:%M:%S'  --pretty=format:'[%ad]: %s [%an]' --abbrev-commit`
+# git log -10 --pretty=format:"%s" >> ${exportIpaPath}/changelog
+git log  --date=format:'%Y-%m-%d %H:%M:%S'  --pretty=format:'【%ad】: %s [%an]' --abbrev-commit >> ${exportIpaPath}/changelog
+
+#echo ${GIT_LOG} | sed 's/ /\n/g ' > ${exportIpaPath}/changelog
+#echo $GIT_LOG > ${exportIpaPath}/changelog
 #上传到Fir
 # 将XXX替换成自己的Fir平台的token
 fir login -T 7996aa12af2ec8d360477d2ca671daf6
-fir publish $exportIpaPath/$scheme_name.ipa
+fir publish $exportIpaPath/$scheme_name.ipa --changelog=${exportIpaPath}/changelog
 
 open -a "/Applications/Safari.app" https://fir.im/jjns
 
-GIT_LOG=`git log -10 --pretty=format:"%s"`
 #$GIT_LOG
 curl -i "http://127.0.0.1/app/public/api/appSumbit?debug=99&json" -X POST -d "log=$GIT_LOG"
 
